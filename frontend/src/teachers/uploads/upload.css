@@ -1,0 +1,18 @@
+.upload-div {
+    display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 89vh;
+  background: linear-gradient(135deg, #ff0000, #Fd6869);
+}
+
+.upload-ul {
+    background-color: white;
+    max-width: 400px;
+    margin: 25px;
+    padding: 25px;
+}
+
+.btn-upload {
+    margin-top: 10px;
+}
