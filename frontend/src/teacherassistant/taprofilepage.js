@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
-import tdata from "./tdata";
-import Card from "./tprofilecard";
+import tdata from "./tadata";
+import Card from "./taprofilecard";
 
 function Profile(){
     const curr=tdata.filter(teacher => {

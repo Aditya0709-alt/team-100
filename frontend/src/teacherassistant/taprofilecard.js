@@ -1,5 +1,5 @@
 import React from "react";
-import "./tprofile.css";
+import "./taprofile.css";
 
 const Card = (props) => {
   return (
@@ -11,7 +11,7 @@ const Card = (props) => {
       <div className="card">
         <img src={props.imgurl} style={{ width: "100%" }} />
         <h1>{props.name}</h1>
-        <p className="title">Teacher, {props.subject}</p>
+        <p className="title">Teacher Assistant, {props.subject}</p>
         <p>{props.sname}</p>
         <a href="#">
           <i className="fa fa-dribbble" />
