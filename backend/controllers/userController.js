@@ -7,13 +7,22 @@ const User = require("../model/userModel");
 //route POST /api/users/register
 //access public
 const registerUser = asyncHandler(async (req, res) => {
-  const { name, email, password } = req.body;
-  if (!name || !email || !password) {
+  const {
+    name,
+    password,
+    school,
+    enrolid,
+    role,
+    ta_assigned,
+    subject,
+    superpass,
+  } = req.body;
+  if (!name || !enrolid || !password || !role) {
     res.status(400);
     throw new Error("Please enter all fields");
   }
 
-  const userExists = await User.findOne({ email });
+  const userExists = await User.findOne({ enrolid });
 
   if (userExists) {
     res.status(400);
@@ -21,28 +30,37 @@ const registerUser = asyncHandler(async (req, res) => {
   }
 
   //Hash password
-    const salt = await bcrypt.genSalt(10);
-    const hashedPassword = await bcrypt.hash(password, salt);
+  const salt = await bcrypt.genSalt(10);
+  const hashedPassword = await bcrypt.hash(password, salt);
 
-    //Create user
-    const user = await User.create({
-        name,
-        email,
-        password: hashedPassword
+  //Create user
+  const user = await User.create({
+    name,
+    enrolid,
+    password: hashedPassword,
+    role,
+    school,
+    subject,
+    ta_assigned,
+    superpass,
+  });
+
+  if (user) {
+    res.status(201).json({
+      _id: user.id,
+      name: user.name,
+      enrolid: user.enrolid,
+      role: user.role,
+      school: user.school,
+      subject: user.subject,
+      ta_assigned: user.ta_assigned,
+      superpassword: user.superpass,
+      token: generateToken(user._id),
     });
-
-    if(user){
-        res.status(201).json({
-            _id: user.id,
-            name: user.name,
-            email: user.email, 
-            token: generateToken(user._id)
-        })
-    }
-    else{
-        res.status(400)
-        throw new Error("invalid user data")
-    }
+  } else {
+    res.status(400);
+    throw new Error("invalid user data");
+  }
 });
 
 //desc Authenticate a user
@@ -50,37 +68,39 @@ const registerUser = asyncHandler(async (req, res) => {
 //access public
 
 const loginUser = asyncHandler(async (req, res) => {
-    const { email, password } = req.body;
+  const { enrolid, password } = req.body;
 
-    //Check if user exists
-    const user = await User.findOne({ email });
+  //Check if user exists
+  const user = await User.findOne({ enrolid });
 
-    if (user && (await bcrypt.compare(password, user.password)) ) {
-        res.json({
-            _id: user.id,
-            name: user.name,
-            email: user.email,
-            token: generateToken(user._id),
-        })
-    } else {
-        res.status(400);
-        throw new Error("Invalid credentials");
-    }
+  if (user && (await bcrypt.compare(password, user.password))) {
+    res.json({
+      _id: user.id,
+      name: user.name,
+      enrolid: user.enrolid,
+      role: user.role,
+      superpass: user.superpass,
+      token: generateToken(user._id),
+    });
+  } else {
+    res.status(400);
+    throw new Error("Invalid credentials");
+  }
 });
 
 //desc get user data
 //route GET /api/users/:id
 //access private
 const getMe = asyncHandler(async (req, res) => {
-    res.status(200).json(req.user);
+  res.status(200).json(req.user);
 });
 
 // Generate token for user
 const generateToken = (id) => {
-    return jwt.sign({ id }, process.env.JWT_SECRET, {
-        expiresIn: '30d',
-    });
-}
+  return jwt.sign({ id }, process.env.JWT_SECRET, {
+    expiresIn: "30d",
+  });
+};
 
 module.exports = {
   registerUser,
