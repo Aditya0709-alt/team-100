@@ -2,7 +2,7 @@ const express = require("express");
 const colors = require("colors");
 const dotenv = require("dotenv").config();
 const { errorHandler } = require("./middleware/errorMiddleware");
-const connectDB = require("./config/db.js")
+const connectDB = require("./config/db.js");
 const port = process.env.PORT || 5000;
 
 connectDB();
@@ -14,6 +14,7 @@ app.use(express.urlencoded({ extended: false }));
 
 app.use("/api/goals", require("./routes/goalRoutes"));
 app.use("/api/users", require("./routes/userRoutes"));
+app.use("/api/get", require("./routes/getDataRoutes"));
 
 app.use(errorHandler);
 
