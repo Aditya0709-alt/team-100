@@ -18,30 +18,32 @@ function Login() {
   }
 
   return (
-    <div className="container">
-      <div className="title">Login Page</div>
-      <div className="content">
-        <form onSubmit={onSubmit}>
-          <div className="user-details">
+    <div className='main-container'>
+        <div className="container-login">
+        <div className="title">Login Page</div>
+        <div className="content">
+          <form onSubmit={onSubmit}>
+            <div className="user-details">
+
+              <div className="input-box">
+                <span className="details">User Id</span>
+                <input type="text" placeholder="Enter your user id" value={email} required onChange={(e) => setEmail(e.target.value)} />
+              </div>
 
             <div className="input-box">
-              <span className="details">User Id</span>
-              <input type="text" placeholder="Enter your user id" value={email} required onChange={(e) => setEmail(e.target.value)} />
+              <span className="details">Password</span>
+              <input type="text" placeholder="Enter your password" value={password} required onChange={(e) => setPassword(e.target.value)}  />
             </div>
 
-          <div className="input-box">
-            <span className="details">Password</span>
-            <input type="text" placeholder="Enter your password" value={password} required onChange={(e) => setPassword(e.target.value)}  />
           </div>
-
-        </div>
-        
-        <div className="button">
-          <input type="submit" value="Login" />
-        </div>
-      </form>
+          
+          <div className="button">
+            <input type="submit" value="Login" />
+          </div>
+        </form>
+      </div>
     </div>
-  </div>
+    </div>
   )
 }
 

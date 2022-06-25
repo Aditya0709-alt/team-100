@@ -5,7 +5,7 @@
   box-sizing: border-box;
   font-family: 'Poppins',sans-serif;
 }
-body{
+.main-container{
   height: 100vh;
   display: flex;
   justify-content: center;
@@ -13,8 +13,10 @@ body{
   padding: 10px;
   background: linear-gradient(135deg, #ff0000, #Fd6869);
 }
-.container{
-  max-width: 700px;
+.container-login{
+    max-width: 500px;
+  max-height: 750px;
+  /* max-width: 700px; */
   width: 100%;
   background-color: #fff;
   padding: 25px 30px;
