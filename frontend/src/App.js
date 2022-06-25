@@ -6,7 +6,6 @@ import Profile from "./teacherassistant/taprofilepage";
 function App() {
   return (
     <Router>
-      <Profile></Profile>
       <div className="App">
         <Routes>
           <Route path="/signup" element={<SignUp />} />
