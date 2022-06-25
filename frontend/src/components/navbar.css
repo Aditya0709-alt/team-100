@@ -9,7 +9,8 @@
   background: rgb(216, 177, 177);
 }
 nav{
-  position: fixed;
+  /* position: fixed; */
+  top: 0;
   background: #786868;
   width: 100%;
   padding: 20px 0;

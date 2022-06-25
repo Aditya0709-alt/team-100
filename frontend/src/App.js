@@ -4,15 +4,16 @@ import Login from "./screens/Login";
 import Profile from "./teachers/tprofilepage";
 import View_data from "./teacherassistant/view_data";
 import Navbar from "./components/Navbar";
+import Dashboard from "./screens/Dashboard";
 
 function App() {
   return (
     <div>
-      <Navbar />
+      <div><Navbar /></div>
       <Router>
-      <div className="App">
+      <div className="main-content">
         <Routes>
-        <Route path="/" element={<Login />} />
+        <Route path="/" element={<Dashboard />} />
           <Route path="/signup" element={<SignUp />} />
           <Route path="/login" element={<Login />} />
         </Routes>
