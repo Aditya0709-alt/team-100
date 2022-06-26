@@ -79,6 +79,9 @@ const loginUser = asyncHandler(async (req, res) => {
       name: user.name,
       enrolid: user.enrolid,
       role: user.role,
+      school: user.school,
+      subject: user.subject,
+      ta_assigned: user.ta_assigned,
       superpass: user.superpass,
       token: generateToken(user._id),
     });
